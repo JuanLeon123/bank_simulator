@@ -1,4 +1,4 @@
-#include "Account.h"
+#include "Cuenta.h"
 #include <iostream>
 
 Account::Account(std::string numeroCuenta, double depositoInicial) 
