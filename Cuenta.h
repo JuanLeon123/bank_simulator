@@ -13,11 +13,9 @@ private:
 
 public:
     Cuenta(std::string numeroCuenta, double depositoInicial);
-    void depositar(double cantidad);
-    bool retirar(double cantidad);
-    void mostrarDetallesCuenta() const;
-    std::string obtenerNumeroCuenta() const;
-    double obtenerSaldo() const;
+    void depositar(double monto);
+    bool retirar(double monto);
+    void imprimirInformacion() const;
 };
 
-#endif
+#endif // CUENTA_H

@@ -6,12 +6,12 @@
 class Transaccion {
 private:
     std::string tipo;
-    double cantidad;
+    double monto;
     std::string fecha;
 
 public:
-    Transaccion(std::string tipo, double cantidad, std::string fecha);
-    void mostrarTransaccion() const;
+    Transaccion(std::string tipo, double monto, std::string fecha);
+    void imprimirTransaccion() const;
 };
 
-#endif
+#endif // TRANSACCION_H

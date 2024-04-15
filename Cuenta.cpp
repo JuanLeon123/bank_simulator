@@ -1,33 +1,33 @@
 #include "Cuenta.h"
 #include <iostream>
 
-Account::Account(std::string numeroCuenta, double depositoInicial) 
-    : numeroCuenta(numeroCuenta), saldo(depositoInicial) {
+Cuenta::Cuenta(std::string numCuenta, double depositoInicial) 
+    : numeroCuenta(numCuenta), saldo(depositoInicial) {
     transacciones.emplace_back("Deposito inicial", depositoInicial, "2023-01-01");
 }
 
-void Account::depositar(double cantidad) {
-    saldo += cantidad;
-    transacciones.emplace_back("Deposito", cantidad, "2023-01-02");
-    std::cout << "Depositado $" << cantidad << ". Nuevo saldo: $" << saldo << std::endl;
+void Cuenta::depositar(double monto) {
+    saldo += monto;
+    transacciones.emplace_back("Deposito", monto, "2023-01-02");
+    std::cout << "Depositados $" << monto << ". Nuevo Saldo: $" << saldo << std::endl;
 }
 
-bool Account::retiro(double cantidad) {
-    if (cantidad > saldo) {
-        std::cout << "Fondos insuficientes" << std::endl;
+bool Cuenta::retirar(double monto) {
+    if (monto > saldo) {
+        std::cout << "Fondos insuficientes." << std::endl;
         return false;
     }
-    saldo -= cantidad;
-    transacciones.emplace_back("Retiro", cantidad, "2023-01-02");
-    std::cout << "Retirado $" << cantidad << ". Nuevo saldo: $" << saldo << std::endl;
+    saldo -= monto;
+    transacciones.emplace_back("Retiro", monto, "2023-01-02");
+    std::cout << "Retirados $" << monto << ". Nuevo Saldo: $" << saldo << std::endl;
     return true;
 }
 
-void Account::mostrarDetallesCuenta() const {
-    std::cout << "Numero Cuenta: " << numeroCuenta << std::endl;
-    std::cout << "Saldo Total: $" << saldo << std::endl;
+void Cuenta::imprimirInformacion() const {
+    std::cout << "Numero de Cuenta: " << numeroCuenta << std::endl;
+    std::cout << "Saldo Actual: $" << saldo << std::endl;
     std::cout << "Transacciones:" << std::endl;
-    for (const auto& transacciones : transacciones) {
-        transacciones.mostrarTransaccion();
+    for (const auto& trans : transacciones) {
+        trans.imprimirTransaccion();
     }
 }
