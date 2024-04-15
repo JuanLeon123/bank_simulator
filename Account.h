@@ -1,23 +1,23 @@
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+#ifndef CUENTA_H
+#define CUENTA_H
 
 #include <string>
 #include <vector>
-#include "Transaction.h"
+#include "Transaccion.h"
 
-class Account {
+class Cuenta {
 private:
-    std::string accountNumber;
-    double balance;
-    std::vector<Transaction> transactions;
+    std::string numeroCuenta;
+    double saldo;
+    std::vector<Transaccion> transacciones;
 
 public:
-    Account(std::string accNumber, double initialDeposit);
-    void deposit(double amount);
-    bool withdraw(double amount);
-    void printAccountInfo() const;
-    std::string getAccountNumber() const;
-    double getBalance() const;
+    Cuenta(std::string numeroCuenta, double depositoInicial);
+    void depositar(double cantidad);
+    bool retirar(double cantidad);
+    void mostrarDetallesCuenta() const;
+    std::string obtenerNumeroCuenta() const;
+    double obtenerSaldo() const;
 };
 
 #endif

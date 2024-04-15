@@ -4,62 +4,62 @@
 
 int main() {
     Bank bank;
-    std::string accountNumber, toAccount;
-    double amount;
-    int choice;
+    std::string numeroCuenta, cuentaDestino;
+    double cantidad;
+    int opcion;
 
     while (true) {
         std::cout << "\n*** Bank Simulator ***\n";
-        std::cout << "1. Create Account\n";
-        std::cout << "2. Deposit\n";
-        std::cout << "3. Withdraw\n";
-        std::cout << "4. Transfer\n";
-        std::cout << "5. Account Info\n";
-        std::cout << "6. Exit\n";
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cout << "1. Crear una cuenta\n";
+        std::cout << "2. depositarar\n";
+        std::cout << "3. Retirar\n";
+        std::cout << "4. Transferir\n";
+        std::cout << "5. Informacion de cuenta\n";
+        std::cout << "6. Salir\n";
+        std::cout << "Elija una opcion: ";
+        std::cin >> opcion;
 
-        switch (choice) {
+        switch (opcion) {
             case 1:
-                std::cout << "Enter account number: ";
-                std::cin >> accountNumber;
-                std::cout << "Enter initial deposit: ";
-                std::cin >> amount;
-                bank.createAccount(accountNumber, amount);
+                std::cout << "Digitar numero de cuenta ";
+                std::cin >> numeroCuenta;
+                std::cout << "Digitar un depositaro inicial: ";
+                std::cin >> cantidad;
+                bank.crearCuenta(numeroCuenta, cantidad);
                 break;
             case 2:
-                std::cout << "Enter account number: ";
-                std::cin >> accountNumber;
-                std::cout << "Enter amount to deposit: ";
-                std::cin >> amount;
-                bank.depositToAccount(accountNumber, amount);
+                std::cout << "Digitar numero de cuenta: ";
+                std::cin >> numeroCuenta;
+                std::cout << "Digitar cantidad a depositarar: ";
+                std::cin >> cantidad;
+                bank.depositararACuenta(numeroCuenta, cantidad);
                 break;
             case 3:
-                std::cout << "Enter account number: ";
-                std::cin >> accountNumber;
-                std::cout << "Enter amount to withdraw: ";
-                std::cin >> amount;
-                bank.withdrawFromAccount(accountNumber, amount);
+                std::cout << "Digitar numero de cuenta: ";
+                std::cin >> numeroCuenta;
+                std::cout << "Digitar cantidad a retirar: ";
+                std::cin >> cantidad;
+                bank.retirarDeCuenta(numeroCuenta, cantidad);
                 break;
             case 4:
-                std::cout << "Enter from account number: ";
-                std::cin >> accountNumber;
-                std::cout << "Enter to account number: ";
-                std::cin >> toAccount;
-                std::cout << "Enter amount to transfer: ";
-                std::cin >> amount;
-                bank.transfer(accountNumber, toAccount, amount);
+                std::cout << "Digitar numero de cuenta de origen: ";
+                std::cin >> numeroCuenta;
+                std::cout << "Digitar numero de cuenta de destino: ";
+                std::cin >> cuentaDestino;
+                std::cout << "Digitar cantidad a transferir: ";
+                std::cin >> cantidad;
+                bank.transferir(numeroCuenta, cuentaDestino, cantidad);
                 break;
             case 5:
-                std::cout << "Enter account number: ";
-                std::cin >> accountNumber;
-                bank.printAccountDetails(accountNumber);
+                std::cout << "Digitar numero de cuenta: ";
+                std::cin >> numeroCuenta;
+                bank.mostrarDetallesCuenta(numeroCuenta);
                 break;
             case 6:
-                std::cout << "Exiting program.";
+                std::cout << "Saliendo del programa...";
                 return 0;
             default:
-                std::cout << "Invalid choice. Please try again.\n";
+                std::cout << "Opcion invalida. Intente nuevamente.\n";
                 break;
         }
     }

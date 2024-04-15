@@ -11,11 +11,11 @@ private:
     std::unordered_map<std::string, std::shared_ptr<Account>> accounts;
 
 public:
-    void createAccount(const std::string& accountNumber, double initialDeposit);
-    void depositToAccount(const std::string& accountNumber, double amount);
-    void withdrawFromAccount(const std::string& accountNumber, double amount);
-    void transfer(const std::string& fromAccount, const std::string& toAccount, double amount);
-    void printAccountDetails(const std::string& accountNumber) const;
+    void crearCuenta(const std::string& numeroCuenta, double depositaroInicial);
+    void depositararACuenta(const std::string& numeroCuenta, double cantidad);
+    void retirarDeCuenta(const std::string& numeroCuenta, double cantidad);
+    void transferir(const std::string& cuentaOrigen, const std::string& cuentaDestino, double cantidad);
+    void mostrarDetallesCuenta(const std::string& numeroCuenta) const;
 };
 
 #endif

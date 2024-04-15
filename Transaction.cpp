@@ -1,9 +1,9 @@
-#include "Transaction.h"
+#include "Transaccion.h"
 #include <iostream>
 
-Transaction::Transaction(std::string type, double amount, std::string date) 
-    : type(type), amount(amount), date(date) {}
+Transaccion::Transaccion(std::string tipo, double cantidad, std::string fecha) 
+    : type(tipo), cantidad(cantidad), date(fecha) {}
 
-void Transaction::printTransaction() const {
-    std::cout << date << " - " << type << " - $" << amount << std::endl;
+void Transaccion::mostrarTransaccion() const {
+    std::cout << fecha << " - " << tipo << " - $" << cantidad << std::endl;
 }

@@ -1,33 +1,33 @@
 #include "Account.h"
 #include <iostream>
 
-Account::Account(std::string accNumber, double initialDeposit) 
-    : accountNumber(accNumber), balance(initialDeposit) {
-    transactions.emplace_back("Initial Deposit", initialDeposit, "2023-01-01");
+Account::Account(std::string numeroCuenta, double depositoInicial) 
+    : numeroCuenta(numeroCuenta), saldo(depositoInicial) {
+    transacciones.emplace_back("Deposito inicial", depositoInicial, "2023-01-01");
 }
 
-void Account::deposit(double amount) {
-    balance += amount;
-    transactions.emplace_back("Deposit", amount, "2023-01-02");
-    std::cout << "Deposited $" << amount << ". New Balance: $" << balance << std::endl;
+void Account::depositar(double cantidad) {
+    saldo += cantidad;
+    transacciones.emplace_back("Deposito", cantidad, "2023-01-02");
+    std::cout << "Depositado $" << cantidad << ". Nuevo saldo: $" << saldo << std::endl;
 }
 
-bool Account::withdraw(double amount) {
-    if (amount > balance) {
-        std::cout << "Insufficient funds." << std::endl;
+bool Account::retiro(double cantidad) {
+    if (cantidad > saldo) {
+        std::cout << "Fondos insuficientes" << std::endl;
         return false;
     }
-    balance -= amount;
-    transactions.emplace_back("Withdrawal", amount, "2023-01-02");
-    std::cout << "Withdrew $" << amount << ". New Balance: $" << balance << std::endl;
+    saldo -= cantidad;
+    transacciones.emplace_back("Retiro", cantidad, "2023-01-02");
+    std::cout << "Retirado $" << cantidad << ". Nuevo saldo: $" << saldo << std::endl;
     return true;
 }
 
-void Account::printAccountInfo() const {
-    std::cout << "Account Number: " << accountNumber << std::endl;
-    std::cout << "Current Balance: $" << balance << std::endl;
-    std::cout << "Transactions:" << std::endl;
-    for (const auto& trans : transactions) {
-        trans.printTransaction();
+void Account::mostrarDetallesCuenta() const {
+    std::cout << "Numero Cuenta: " << numeroCuenta << std::endl;
+    std::cout << "Saldo Total: $" << saldo << std::endl;
+    std::cout << "Transacciones:" << std::endl;
+    for (const auto& transacciones : transacciones) {
+        transacciones.mostrarTransaccion();
     }
 }

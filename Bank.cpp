@@ -1,53 +1,53 @@
 #include "Bank.h"
 #include <iostream>
 
-void Bank::createAccount(const std::string& accountNumber, double initialDeposit) {
-    if (accounts.find(accountNumber) != accounts.end()) {
-        std::cout << "Account already exists." << std::endl;
+void Bank::crearCuenta(const std::string& numeroCuenta, double depositaroInicial) {
+    if (cuentas.find(numeroCuenta) != cuentas.end()) {
+        std::cout << "Cuenta existente." << std::endl;
         return;
     }
-    accounts[accountNumber] = std::make_shared<Account>(accountNumber, initialDeposit);
-    std::cout << "Account created successfully." << std::endl;
+    cuentas[numeroCuenta] = std::make_shared<Account>(numeroCuenta, depositaroInicial);
+    std::cout << "Cuenta creada con exito." << std::endl;
 }
 
-void Bank::depositToAccount(const std::string& accountNumber, double amount) {
-    auto it = accounts.find(accountNumber);
-    if (it == accounts.end()) {
-        std::cout << "Account not found." << std::endl;
+void Bank::depositararACuenta(const std::string& numeroCuenta, double cantidad) {
+    auto it = cuentas.find(numeroCuenta);
+    if (it == cuentas.end()) {
+        std::cout << "Cuenta no encontrada." << std::endl;
         return;
     }
-    it->second->deposit(amount);
+    it->second->depositar(cantidad);
 }
 
-void Bank::withdrawFromAccount(const std::string& accountNumber, double amount) {
-    auto it = accounts.find(accountNumber);
-    if (it == accounts.end()) {
-        std::cout << "Account not found." << std::endl;
+void Bank::retirarDeCuenta(const std::string& numeroCuenta, double cantidad) {
+    auto it = cuentas.find(numeroCuenta);
+    if (it == cuentas.end()) {
+        std::cout << "Cuenta no encontrada." << std::endl;
         return;
     }
-    it->second->withdraw(amount);
+    it->second->retirar(cantidad);
 }
 
-void Bank::transfer(const std::string& fromAccount, const std::string& toAccount, double amount) {
-    auto it_from = accounts.find(fromAccount);
-    auto it_to = accounts.find(toAccount);
-    if (it_from == accounts.end() || it_to == accounts.end()) {
-        std::cout << "One or both accounts not found." << std::endl;
+void Bank::transferir(const std::string& cuentaOrigen, const std::string& cuentaDestino, double cantidad) {
+    auto it_from = cuentas.find(cuentaOrigen);
+    auto it_to = cuentas.find(cuentaDestino);
+    if (it_from == cuentas.end() || it_to == cuentas.end()) {
+        std::cout << "Una o ambas cuentas no encontradas." << std::endl;
         return;
     }
 
-    if (it_from->second->withdraw(amount)) {
-        it_to->second->deposit(amount);
-        std::cout << "Transferred $" << amount << " from " << fromAccount << " to " << toAccount << "." << std::endl;
+    if (it_from->second->retirar(cantidad)) {
+        it_to->second->depositar(cantidad);
+        std::cout << "Transferido $" << cantidad << " desde " << cuentaOrigen << " hacia " << cuentaDestino << "." << std::endl;
     }
 }
 
 
-void Bank::printAccountDetails(const std::string& accountNumber) const {
-    auto it = accounts.find(accountNumber);
-    if (it == accounts.end()) {
-        std::cout << "Account not found." << std::endl;
+void Bank::mostrarDetallesCuenta(const std::string& numeroCuenta) const {
+    auto it = cuentas.find(numeroCuenta);
+    if (it == cuentas.end()) {
+        std::cout << "Cuenta no encontrada." << std::endl;
         return;
     }
-    it->second->printAccountInfo();
+    it->second->mostrarDetallesCuenta();
 }
