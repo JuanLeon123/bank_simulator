@@ -17,4 +17,4 @@ public:
     void imprimirDetallesCuenta(const std::string& numeroCuenta) const;
 };
 
-#endif // BANCO_H
+#endif

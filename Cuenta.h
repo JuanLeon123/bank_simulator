@@ -18,4 +18,4 @@ public:
     void imprimirInformacion() const;
 };
 
-#endif // CUENTA_H
+#endif
