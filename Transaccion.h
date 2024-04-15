@@ -14,4 +14,4 @@ public:
     void imprimirTransaccion() const;
 };
 
-#endif // TRANSACCION_H
+#endif
