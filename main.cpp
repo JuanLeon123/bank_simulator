@@ -1,5 +1,13 @@
 #include "Banco.h"
 #include <iostream>
+#include <string>
+#include <limits>
+#include <cctype>
+
+// Prototipos de las funciones
+bool esNumero(const std::string& str);
+double obtenerMontoValido();
+std::string obtenerNumeroDeCuentaValido();
 
 int main() {
     Banco banco;
@@ -18,50 +26,83 @@ int main() {
         std::cout << "Ingrese su opcion: ";
         std::cin >> opcion;
 
+        // Verificar que la entrada sea un número entero.
+        if (std::cin.fail()) {
+            std::cin.clear(); // Limpia el estado de fallo de cin.
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Descarta la entrada hasta la próxima línea.
+            std::cout << "Entrada inválida. Por favor, ingrese un número entero.\n";
+            continue;
+        }
+
         switch (opcion) {
             case 1:
-                std::cout << "Ingrese el numero de cuenta: ";
-                std::cin >> numeroCuenta;
-                std::cout << "Ingrese el deposito inicial: ";
-                std::cin >> monto;
+                numeroCuenta = obtenerNumeroDeCuentaValido();
+                monto = obtenerMontoValido();
                 banco.crearCuenta(numeroCuenta, monto);
                 break;
-            case 2:
-                std::cout << "Ingrese el numero de cuenta: ";
-                std::cin >> numeroCuenta;
-                std::cout << "Ingrese el monto a depositar: ";
-                std::cin >> monto;
+                case 2:
+                numeroCuenta = obtenerNumeroDeCuentaValido();
+                monto = obtenerMontoValido();
                 banco.depositarEnCuenta(numeroCuenta, monto);
                 break;
             case 3:
-                std::cout << "Ingrese el numero de cuenta: ";
-                std::cin >> numeroCuenta;
-                std::cout << "Ingrese el monto a retirar: ";
-                std::cin >> monto;
+                numeroCuenta = obtenerNumeroDeCuentaValido();
+                monto = obtenerMontoValido();
                 banco.retirarDeCuenta(numeroCuenta, monto);
                 break;
             case 4:
                 std::cout << "Ingrese el numero de cuenta de origen: ";
-                std::cin >> numeroCuenta;
+                numeroCuenta = obtenerNumeroDeCuentaValido();
                 std::cout << "Ingrese el numero de cuenta destino: ";
-                std::cin >> aCuenta;
-                std::cout << "Ingrese el monto a transferir: ";
-                std::cin >> monto;
+                aCuenta = obtenerNumeroDeCuentaValido();
+                monto = obtenerMontoValido();
                 banco.transferir(numeroCuenta, aCuenta, monto);
                 break;
             case 5:
-                std::cout << "Ingrese el numero de cuenta: ";
-                std::cin >> numeroCuenta;
+                numeroCuenta = obtenerNumeroDeCuentaValido();
                 banco.imprimirDetallesCuenta(numeroCuenta);
                 break;
             case 6:
-                std::cout << "Saliendo del programa.";
+                std::cout << "Saliendo del programa.\n";
                 return 0;
             default:
                 std::cout << "Opcion no valida. Intente de nuevo.\n";
                 break;
         }
     }
-
     return 0;
+}
+
+bool esNumero(const std::string& str) {
+    for (char const &ch : str) {
+        if (!std::isdigit(ch)) return false;
+    }
+    return true;
+}
+
+double obtenerMontoValido() {
+    double monto;
+    do {
+        std::cout << "Ingrese un monto valido (mayor a 0): ";
+        std::cin >> monto;
+        if (std::cin.fail() || monto <= 0) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            monto = -1;
+        }
+    } while (monto <= 0);
+    return monto;
+}
+
+std::string obtenerNumeroDeCuentaValido() {
+    std::string numeroCuenta;
+    do {
+        std::cout << "Ingrese el numero de cuenta (solo numeros): ";
+        std::cin >> numeroCuenta;
+        if (!esNumero(numeroCuenta)) {
+            std::cout << "El numero de cuenta debe contener solo numeros.\n";
+            numeroCuenta = ""; // Resetear el numero de cuenta para el bucle
+        }
+    } while (numeroCuenta.empty());
+    return numeroCuenta;
 }
