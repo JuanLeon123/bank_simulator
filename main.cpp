@@ -4,7 +4,6 @@
 #include <limits>
 #include <cctype>
 
-// Prototipos de las funciones
 bool esNumero(const std::string& str);
 double obtenerMontoValido();
 std::string obtenerNumeroDeCuentaValido();
@@ -26,10 +25,9 @@ int main() {
         std::cout << "Ingrese su opcion: ";
         std::cin >> opcion;
 
-        // Verificar que la entrada sea un número entero.
         if (std::cin.fail()) {
-            std::cin.clear(); // Limpia el estado de fallo de cin.
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Descarta la entrada hasta la próxima línea.
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Entrada inválida. Por favor, ingrese un número entero.\n";
             continue;
         }
